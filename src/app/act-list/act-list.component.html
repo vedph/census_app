@@ -1,0 +1,83 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title> Acts </mat-card-title>
+  </mat-card-header>
+  <mat-card-content
+    gdColumns="210px 1fr"
+    gdColumns.lt-md="1fr"
+    gdGap="8px"
+    gdAreas="spinner spinner | filters list | . paginator"
+    gdAreas.lt-md="spinner | list | paginator | filters"
+  >
+    <!-- spinner -->
+    <div
+      *ngIf="paginator.isLoading$ | async"
+      gdArea="spinner"
+      gdAlignColumns="center"
+      gdAlignRows="center"
+    >
+      <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+    </div>
+
+    <!-- filters -->
+    <div gdArea="filters" gdAlignRows.lt-md="center">
+      TODO FILTER
+      <!-- <cadmus-item-filter [filter$]="filter$"></cadmus-item-filter> -->
+    </div>
+
+    <!-- list -->
+    <div gdArea="list" *ngIf="pagination$ | async as pagination">
+      <table>
+        <thead>
+          <th></th>
+          <th>label</th>
+          <th>family</th>
+          <th>place</th>
+          <th>type</th>
+          <!-- <th fxHide.lt-md>group</th> -->
+        </thead>
+        <tbody>
+          <tr *ngFor="let act of pagination.data">
+            <td>
+              <button
+                type="button"
+                mat-icon-button
+                color="primary"
+                (click)="viewAct(act)"
+                matTooltip="View details"
+              >
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <!-- <button
+                mat-icon-button
+                type="button"
+                matTooltip="View details about this act"
+                color="primary"
+                (click)="viewAct(act)"
+              >
+                <mat-icon>read_more</mat-icon>
+              </button> -->
+            </td>
+            <td>{{ act.label }}</td>
+            <td>{{ act.familyName }}</td>
+            <td>{{ act.placeName }}</td>
+            <td>{{ act.typeName }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- pagination -->
+      <mat-paginator
+        gdArea="pagination"
+        gdAlignColumns="center"
+        gdAlignRows="start"
+        [length]="pagination.total"
+        [pageSize]="pageSize?.value"
+        [pageSizeOptions]="[20, 50, 75, 100]"
+        [pageIndex]="pagination.currentPage - 1"
+        [showFirstLastButtons]="true"
+        (page)="pageChanged($event)"
+      ></mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
