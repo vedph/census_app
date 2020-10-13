@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
+  Act,
   ActFilter,
   ActInfo,
   DataEntityType,
@@ -74,6 +75,12 @@ export class ApiService {
       .get<DataPage<ActInfo>>(`${this._env.apiUrl}acts`, {
         params: httpParams,
       })
+      .pipe(retry(3), catchError(this._error.handleError));
+  }
+
+  public getAct(id: number): Observable<Act> {
+    return this._http
+      .get<Act>(`${this._env.apiUrl}acts/${id}`)
       .pipe(retry(3), catchError(this._error.handleError));
   }
 

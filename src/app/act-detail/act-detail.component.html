@@ -1,0 +1,91 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h2>Act Details</h2>
+    </mat-card-title>
+    <mat-card-subtitle *ngIf="act">
+      {{ act.label }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <!-- spinner -->
+  <div *ngIf="!act">
+    <mat-spinner [diameter]="48" [strokeWidth]="4"></mat-spinner>
+  </div>
+  <!-- content -->
+  <mat-card-content *ngIf="act">
+    <mat-tab-group>
+      <!-- act -->
+      <mat-tab label="act">
+        <p class="label">{{ act.label }}</p>
+        <ul>
+          <li>type: {{ act.type.name }}</li>
+          <li>subtype: {{ act.subtype.name }}</li>
+          <li *ngIf="act.company">company: {{ act.company.name }}</li>
+          <li *ngIf="act.family">family: {{ act.family.name }}</li>
+          <li *ngIf="act.place">place: {{ act.place.name }}</li>
+        </ul>
+        <p *ngIf="act.note" class="note">{{ act.note }}</p>
+
+        <div *ngIf="act.categories?.length">
+          <h3>Categories</h3>
+          <ul>
+            <li *ngFor="let i of act.categories">{{ i.name }}</li>
+          </ul>
+        </div>
+
+        <div *ngIf="act.categories?.length">
+          <h3>Professions</h3>
+          <ul>
+            <li *ngFor="let i of act.professions">{{ i.name }}</li>
+          </ul>
+        </div>
+
+        <div *ngIf="act.partners?.length">
+          <h3>Partners</h3>
+          <ul>
+            <li *ngFor="let i of act.partners">{{ i.name }}</li>
+          </ul>
+        </div>
+      </mat-tab>
+
+      <!-- book -->
+      <mat-tab label="book">
+        <p>
+          {{ act.book.archive.name }} - {{ act.book.location }}
+          <span *ngIf="act.book.file">, {{ act.book.file }}</span
+          >.
+        </p>
+        <ul>
+          <li>type: {{ act.book.type.name }}</li>
+          <li>subtype: {{ act.book.subtype.name }}</li>
+          <li *ngIf="act.book.startYear">start: {{ act.book.startYear }}</li>
+          <li *ngIf="act.book.startYear">end: {{ act.book.endYear }}</li>
+          <li *ngIf="act.book.writePlace">write place: {{ act.book.writePlace.name }}</li>
+          <li *ngIf="act.book.writer">writer: {{ act.book.writer.name }}</li>
+          <li *ngIf="act.book.edition">edition: {{ act.book.edition }}</li>
+        </ul>
+        <p *ngIf="act.book.description" class="description">
+          {{ act.book.description }}
+        </p>
+        <p *ngIf="act.book.note" class="note">
+          {{ act.book.note }}
+        </p>
+
+        <div *ngIf="act.book.incipit">
+          <h3>Incipit</h3>
+          <p class="incipit">{{act.book.incipit}}</p>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      type="button"
+      mat-stroked-button
+      color="primary"
+      (click)="backToList()"
+    >
+      back to list
+    </button>
+  </mat-card-actions>
+</mat-card>

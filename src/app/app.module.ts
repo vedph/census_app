@@ -45,9 +45,18 @@ import { ActListComponent } from './act-list/act-list.component';
 import { ActFilterComponent } from './act-filter/act-filter.component';
 import { LookupListComponent } from './lookup-list/lookup-list.component';
 import { LookupItemComponent } from './lookup-item/lookup-item.component';
+import { ActDetailComponent } from './act-detail/act-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ActListComponent, ActFilterComponent, LookupListComponent, LookupItemComponent],
+  declarations: [
+    AppComponent,
+    ActDetailComponent,
+    ActFilterComponent,
+    ActListComponent,
+    HomeComponent,
+    LookupItemComponent,
+    LookupListComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -59,6 +68,7 @@ import { LookupItemComponent } from './lookup-item/lookup-item.component';
         { path: '', redirectTo: 'home', pathMatch: 'full' },
         { path: 'home', component: HomeComponent },
         { path: 'acts', component: ActListComponent },
+        { path: 'acts/:id', component: ActDetailComponent },
         { path: '**', component: HomeComponent },
       ],
       {
