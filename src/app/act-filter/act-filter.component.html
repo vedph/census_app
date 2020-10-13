@@ -1,78 +1,99 @@
 <mat-card>
   <mat-card-content>
     <form [formGroup]="form" (submit)="apply()">
-      <!-- act type -->
-      <!-- family (autocomplete) -->
-      <div>
-        <app-lookup-item
-          entityType="9"
-          label="family"
-          (itemChange)="onFamilyChange($event)"
-        ></app-lookup-item>
-      </div>
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon>filter_list</mat-icon>
+            &nbsp;general
+          </ng-template>
 
-      <!-- company (autocomplete) -->
-      <div>
-        <app-lookup-item
-          entityType="8"
-          label="company"
-          (itemChange)="onCompanyChange($event)"
-        ></app-lookup-item>
-      </div>
+          <!-- act type -->
+          <!-- family (autocomplete) -->
+          <div>
+            <app-lookup-item
+              entityType="9"
+              label="family"
+              (itemChange)="onFamilyChange($event)"
+            ></app-lookup-item>
+          </div>
 
-      <!-- place (autocomplete) -->
-      <div>
-        <app-lookup-item
-          entityType="11"
-          label="place"
-          (itemChange)="onPlaceChange($event)"
-        ></app-lookup-item>
-      </div>
+          <!-- company (autocomplete) -->
+          <div>
+            <app-lookup-item
+              entityType="8"
+              label="company"
+              (itemChange)="onCompanyChange($event)"
+            ></app-lookup-item>
+          </div>
 
-      <!-- label -->
+          <!-- place (autocomplete) -->
+          <div>
+            <app-lookup-item
+              entityType="11"
+              label="place"
+              (itemChange)="onPlaceChange($event)"
+            ></app-lookup-item>
+          </div>
 
-      <!-- archive -->
-      <!-- book (autocomplete) -->
-      <div>
-        <app-lookup-item
-          entityType="4"
-          label="book"
-          (itemChange)="onBookChange($event)"
-        ></app-lookup-item>
-      </div>
+          <!-- label -->
 
-      <!-- book years -->
-      <!-- book description -->
+          <!-- archive -->
+          <!-- book (autocomplete) -->
+          <div>
+            <app-lookup-item
+              entityType="4"
+              label="book"
+              (itemChange)="onBookChange($event)"
+            ></app-lookup-item>
+          </div>
 
-      <!-- categories -->
-      <div>
-        <h4>categories</h4>
-        <app-lookup-list
-          entityType="7"
-          label="category"
-          (itemsChange)="onCategoriesChange($event)"
-        ></app-lookup-list>
-      </div>
+          <!-- book years -->
+          <!-- book description -->
+        </mat-tab>
 
-      <!-- professions -->
-      <div>
-        <h4>professions</h4>
-        <app-lookup-list
-          entityType="12"
-          label="profession"
-          (itemsChange)="onProfessionsChange($event)"
-        ></app-lookup-list>
-      </div>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon>group_work</mat-icon>
+            &nbsp;classes
+          </ng-template>
 
-      <!-- partners -->
-      <div>
-        <h4>partners</h4>
-        <app-lookup-list
-          entityType="13"
-          label="partner"
-          (itemsChange)="onPartnersChange($event)"
-        ></app-lookup-list>
-      </div>
+          <!-- categories -->
+          <div>
+            <h4>categories</h4>
+            <app-lookup-list
+              entityType="7"
+              label="category"
+              (itemsChange)="onCategoriesChange($event)"
+            ></app-lookup-list>
+          </div>
+
+          <!-- professions -->
+          <div>
+            <h4>professions</h4>
+            <app-lookup-list
+              entityType="12"
+              label="profession"
+              (itemsChange)="onProfessionsChange($event)"
+            ></app-lookup-list>
+          </div>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon>people</mat-icon>
+            &nbsp;persons
+          </ng-template>
+          <!-- partners -->
+          <div>
+            <h4>partners</h4>
+            <app-lookup-list
+              entityType="13"
+              label="partner"
+              (itemsChange)="onPartnersChange($event)"
+            ></app-lookup-list>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </form>
   </mat-card-content>
   <mat-card-actions>
