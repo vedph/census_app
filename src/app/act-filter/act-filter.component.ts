@@ -14,45 +14,28 @@ export class ActFilterComponent implements OnInit {
   public partners$: Observable<LookupItem[]>;
 
   public form: FormGroup;
-  public partner: FormControl;
 
+  public categories: LookupItem[];
   public partners: LookupItem[];
+  public professions: LookupItem[];
 
   constructor(formBuilder: FormBuilder, private _apiService: ApiService) {
-    this.partner = formBuilder.control(null);
-    this.form = formBuilder.group({
-      partner: this.partner,
-    });
-
-    this.partners$ = this.partner.valueChanges.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((value: LookupItem | string) => {
-        if (typeof value === 'string') {
-          return this._apiService.lookup(DataEntityType.partner, value, 10);
-        } else {
-          return of([value]);
-        }
-      })
-    );
-    this.partners = [];
+    this.form = formBuilder.group({});
   }
 
-  ngOnInit(): void {}
-
-  public getLookupName(item: LookupItem): string {
-    return item?.name;
+  ngOnInit(): void {
   }
 
-  public addToPartners(partner: LookupItem): void {
-    if (!this.partners.find((p) => p.id === partner.id)) {
-      this.partners.push(partner);
-    }
-    this.partner.setValue(null);
+  public onCategoriesChange(items: LookupItem[]): void {
+    this.categories = items;
   }
 
-  public removePartner(index: number): void {
-    this.partners = this.partners.splice(index, 1);
+  public onPartnersChange(items: LookupItem[]): void {
+    this.partners = items;
+  }
+
+  public onProfessionsChange(items: LookupItem[]): void {
+    this.professions = items;
   }
 
   public apply(): void {

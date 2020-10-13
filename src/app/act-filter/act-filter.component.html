@@ -1,16 +1,6 @@
 <mat-card>
   <mat-card-content>
     <form [formGroup]="form" (submit)="apply()">
-      <!-- partners -->
-      <mat-autocomplete
-        #partnerAuto="matAutocomplete"
-        [displayWith]="getLookupName"
-      >
-        <mat-option *ngFor="let partner of partners$ | async" [value]="partner" (onSelectionChange)="addToPartners(partner)">
-          {{ partner.name }}
-        </mat-option>
-      </mat-autocomplete>
-
       <!-- act type -->
       <!-- family (autocomplete) -->
       <!-- company (autocomplete) -->
@@ -23,48 +13,32 @@
       <!-- book description -->
 
       <!-- categories -->
+      <div>
+        <h4>categories</h4>
+        <app-lookup-list
+          entityType="7"
+          (itemsChange)="onCategoriesChange($event)"
+        ></app-lookup-list>
+      </div>
+
       <!-- professions -->
+      <div>
+        <h4>professions</h4>
+        <app-lookup-list
+          entityType="12"
+          (itemsChange)="onProfessionsChange($event)"
+        ></app-lookup-list>
+      </div>
+
       <!-- partners -->
       <div>
         <h4>partners</h4>
-        <mat-form-field>
-          <input
-            matInput
-            type="text"
-            placeholder="partner"
-            [formControl]="partner"
-            [matAutocomplete]="partnerAuto"
-          />
-        </mat-form-field>
-        <!-- <button
-          type="button"
-          mat-icon-button
-          [disabled]="!partner.value"
-          matTooltip="Add to partners"
-          (click)="addToPartners(partner.value)"
-        >
-          <mat-icon>add_circle</mat-icon>
-        </button> -->
-        <table>
-          <tbody>
-            <tr *ngFor="let p of partners; let i = index">
-              <td>
-                <button
-                  type="button"
-                  mat-icon-button
-                  color="warn"
-                  (click)="removePartner(i)"
-                >
-                  <mat-icon>clear</mat-icon>
-                </button>
-              </td>
-              <td>
-                {{ p.name }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <app-lookup-list
+          entityType="13"
+          (itemsChange)="onPartnersChange($event)"
+        ></app-lookup-list>
       </div>
+
     </form>
   </mat-card-content>
 </mat-card>
