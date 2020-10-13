@@ -17,8 +17,8 @@ import { ActsState } from './state/acts.store';
 })
 export class ActListComponent implements OnInit {
   public pagination$: Observable<PaginationResponse<ActInfo>>;
-  public filter$: BehaviorSubject<ActFilter>;
   public pageSize: FormControl;
+  private _filter$: BehaviorSubject<ActFilter>;
   private _refresh$: BehaviorSubject<number>;
 
   constructor(
@@ -28,7 +28,6 @@ export class ActListComponent implements OnInit {
     formBuilder: FormBuilder
   ) {
     this.pageSize = formBuilder.control(20);
-    this._refresh$ = new BehaviorSubject(0);
   }
 
   private getRequest(
@@ -49,10 +48,16 @@ export class ActListComponent implements OnInit {
       );
   }
 
+  public onFilterChange(filter: ActFilter): void {
+    this._filter$.next(filter);
+  }
+
   ngOnInit(): void {
+    // refresh
+    this._refresh$ = new BehaviorSubject<number>(0);
     // filter
     const initialPageSize = 20;
-    this.filter$ = new BehaviorSubject<ActFilter>(
+    this._filter$ = new BehaviorSubject<ActFilter>(
       this.paginator.metadata.get('filter') || {
         pageNumber: 1,
         pageSize: initialPageSize,
@@ -76,7 +81,7 @@ export class ActListComponent implements OnInit {
           this.paginator.clearCache();
         })
       ),
-      this.filter$.pipe(
+      this._filter$.pipe(
         // clear the cache when filters changed
         tap((_) => {
           this.paginator.clearCache();

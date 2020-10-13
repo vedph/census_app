@@ -24,7 +24,7 @@ export class LookupItemComponent implements OnInit {
   public form: FormGroup;
   public lookup: FormControl;
   public items$: Observable<LookupItem[]>;
-  public pickedItems: LookupItem[];
+  public item: LookupItem;
 
   constructor(formBuilder: FormBuilder, private _apiService: ApiService) {
     // events
@@ -34,7 +34,6 @@ export class LookupItemComponent implements OnInit {
     this.form = formBuilder.group({
       lookup: this.lookup,
     });
-    this.pickedItems = [];
     this.limit = 10;
   }
 
@@ -61,10 +60,13 @@ export class LookupItemComponent implements OnInit {
   }
 
   public clear(): void {
+    this.item = null;
     this.lookup.setValue(null);
+    this.itemChange.emit(null);
   }
 
   public pickItem(item: LookupItem): void {
+    this.item = item;
     this.itemChange.emit(item);
   }
 }

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { DataEntityType, LookupItem } from '../models';
+import { ActFilter, DataEntityType, LookupItem } from '../models';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -29,7 +29,13 @@ export class ActFilterComponent implements OnInit {
 
   public archives$: Observable<LookupItem[]>;
 
+  @Output()
+  public filterChange: EventEmitter<ActFilter>;
+
   constructor(formBuilder: FormBuilder, private _apiService: ApiService) {
+    // event
+    this.filterChange = new EventEmitter<ActFilter>();
+    // form
     this.label = formBuilder.control(null);
     this.yearMin = formBuilder.control(0);
     this.yearMax = formBuilder.control(0);
@@ -77,6 +83,22 @@ export class ActFilterComponent implements OnInit {
   }
 
   public apply(): void {
-    // TODO
+    const filter: ActFilter = {
+      pageNumber: 0,
+      pageSize: 0,
+      familyId: this.family?.id,
+      companyId: this.company?.id,
+      placeId: this.place?.id,
+      label: this.label.value,
+      archiveId: this.archive.value,
+      bookId: this.book?.id,
+      bookYearMin: this.yearMin.value,
+      bookYearMax: this.yearMax.value,
+      description: this.description.value,
+      categoryIds: this.categories?.map(c => c.id),
+      professionIds: this.professions?.map(c => c.id),
+      partnerIds: this.partners?.map(c => c.id)
+    };
+    this.filterChange.emit(filter);
   }
 }

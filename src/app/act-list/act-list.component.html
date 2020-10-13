@@ -21,7 +21,7 @@
 
     <!-- filters -->
     <div gdArea="filters" gdAlignRows.lt-md="center">
-      <app-act-filter></app-act-filter>
+      <app-act-filter (filterChange)="onFilterChange($event)"></app-act-filter>
     </div>
 
     <!-- list -->
@@ -31,8 +31,11 @@
           <th></th>
           <th>label</th>
           <th>family</th>
+          <th>company</th>
           <th>place</th>
           <th>type</th>
+          <th>start</th>
+          <th>end</th>
           <!-- <th fxHide.lt-md>group</th> -->
         </thead>
         <tbody>
@@ -50,8 +53,11 @@
             </td>
             <td>{{ act.label }}</td>
             <td>{{ act.familyName }}</td>
+            <td>{{ act.companyName }}</td>
             <td>{{ act.placeName }}</td>
             <td>{{ act.typeName }}</td>
+            <td>{{ act.bookStartYear || '' }}</td>
+            <td>{{ act.bookEndYear || '' }}</td>
           </tr>
         </tbody>
       </table>
