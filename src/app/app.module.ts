@@ -44,9 +44,10 @@ import { EnvServiceProvider } from './services/env.service.provider';
 import { ActListComponent } from './act-list/act-list.component';
 import { ActFilterComponent } from './act-filter/act-filter.component';
 import { LookupListComponent } from './lookup-list/lookup-list.component';
+import { LookupItemComponent } from './lookup-item/lookup-item.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ActListComponent, ActFilterComponent, LookupListComponent],
+  declarations: [AppComponent, HomeComponent, ActListComponent, ActFilterComponent, LookupListComponent, LookupItemComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

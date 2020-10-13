@@ -6,11 +6,11 @@ import { DataEntityType, LookupItem } from '../models';
 import { ApiService } from '../services/api.service';
 
 @Component({
-  selector: 'app-lookup-list',
-  templateUrl: './lookup-list.component.html',
-  styleUrls: ['./lookup-list.component.css'],
+  selector: 'app-lookup-item',
+  templateUrl: './lookup-item.component.html',
+  styleUrls: ['./lookup-item.component.css']
 })
-export class LookupListComponent implements OnInit {
+export class LookupItemComponent implements OnInit {
   @Input()
   public entityType: DataEntityType;
   @Input()
@@ -19,7 +19,7 @@ export class LookupListComponent implements OnInit {
   public limit: number;
 
   @Output()
-  public itemsChange: EventEmitter<LookupItem[]>;
+  public itemChange: EventEmitter<LookupItem>;
 
   public form: FormGroup;
   public lookup: FormControl;
@@ -28,7 +28,7 @@ export class LookupListComponent implements OnInit {
 
   constructor(formBuilder: FormBuilder, private _apiService: ApiService) {
     // events
-    this.itemsChange = new EventEmitter<LookupItem[]>();
+    this.itemChange = new EventEmitter<LookupItem>();
     // form
     this.lookup = formBuilder.control(null);
     this.form = formBuilder.group({
@@ -60,24 +60,11 @@ export class LookupListComponent implements OnInit {
     return item?.name;
   }
 
-  public pickItem(item: LookupItem): void {
-    if (!this.pickedItems.find((i) => i.id === item.id)) {
-      this.pickedItems.push(item);
-    }
-    this.lookup.setValue(null);
-    this.itemsChange.emit(this.pickedItems);
-  }
-
-  public removeItem(index: number): void {
-    this.pickedItems = [
-      ...this.pickedItems.splice(0, index),
-      ...this.pickedItems.splice(index + 1),
-    ];
-    this.itemsChange.emit(this.pickedItems);
-  }
-
   public clear(): void {
-    this.pickedItems = [];
-    this.itemsChange.emit(this.pickedItems);
+    this.lookup.setValue(null);
+  }
+
+  public pickItem(item: LookupItem): void {
+    this.itemChange.emit(item);
   }
 }

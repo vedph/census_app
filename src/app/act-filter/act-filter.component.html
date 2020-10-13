@@ -3,12 +3,44 @@
     <form [formGroup]="form" (submit)="apply()">
       <!-- act type -->
       <!-- family (autocomplete) -->
+      <div>
+        <app-lookup-item
+          entityType="9"
+          label="family"
+          (itemChange)="onFamilyChange($event)"
+        ></app-lookup-item>
+      </div>
+
       <!-- company (autocomplete) -->
+      <div>
+        <app-lookup-item
+          entityType="8"
+          label="company"
+          (itemChange)="onCompanyChange($event)"
+        ></app-lookup-item>
+      </div>
+
       <!-- place (autocomplete) -->
+      <div>
+        <app-lookup-item
+          entityType="11"
+          label="place"
+          (itemChange)="onPlaceChange($event)"
+        ></app-lookup-item>
+      </div>
+
       <!-- label -->
 
       <!-- archive -->
       <!-- book (autocomplete) -->
+      <div>
+        <app-lookup-item
+          entityType="4"
+          label="book"
+          (itemChange)="onBookChange($event)"
+        ></app-lookup-item>
+      </div>
+
       <!-- book years -->
       <!-- book description -->
 
@@ -17,6 +49,7 @@
         <h4>categories</h4>
         <app-lookup-list
           entityType="7"
+          label="category"
           (itemsChange)="onCategoriesChange($event)"
         ></app-lookup-list>
       </div>
@@ -26,6 +59,7 @@
         <h4>professions</h4>
         <app-lookup-list
           entityType="12"
+          label="profession"
           (itemsChange)="onProfessionsChange($event)"
         ></app-lookup-list>
       </div>
@@ -35,10 +69,20 @@
         <h4>partners</h4>
         <app-lookup-list
           entityType="13"
+          label="partner"
           (itemsChange)="onPartnersChange($event)"
         ></app-lookup-list>
       </div>
-
     </form>
   </mat-card-content>
+  <mat-card-actions>
+    <!-- <button mat-stroked-button color="warn" type="button">
+      <mat-icon>clear</mat-icon>
+      reset
+    </button> -->
+    <button mat-stroked-button color="primary" type="submit">
+      <mat-icon>check_circle</mat-icon>
+      apply
+    </button>
+  </mat-card-actions>
 </mat-card>
