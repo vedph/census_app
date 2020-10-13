@@ -15,6 +15,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -41,9 +42,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { EnvServiceProvider } from './services/env.service.provider';
 import { ActListComponent } from './act-list/act-list.component';
+import { ActFilterComponent } from './act-filter/act-filter.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ActListComponent],
+  declarations: [AppComponent, HomeComponent, ActListComponent, ActFilterComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -65,6 +67,7 @@ import { ActListComponent } from './act-list/act-list.component';
     // Material
     FlexLayoutModule,
     DragDropModule,
+    MatAutocompleteModule,
     MatBadgeModule,
     MatButtonModule,
     MatCardModule,

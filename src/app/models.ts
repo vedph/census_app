@@ -75,5 +75,7 @@ export enum DataEntityType
     family,
     person,
     place,
-    profession
+    profession,
+    // virtual
+    partner
 }

@@ -3,7 +3,7 @@
     <mat-card-title> Acts </mat-card-title>
   </mat-card-header>
   <mat-card-content
-    gdColumns="210px 1fr"
+    gdColumns="300px 1fr"
     gdColumns.lt-md="1fr"
     gdGap="8px"
     gdAreas="spinner spinner | filters list | . paginator"
@@ -21,8 +21,7 @@
 
     <!-- filters -->
     <div gdArea="filters" gdAlignRows.lt-md="center">
-      TODO FILTER
-      <!-- <cadmus-item-filter [filter$]="filter$"></cadmus-item-filter> -->
+      <app-act-filter></app-act-filter>
     </div>
 
     <!-- list -->
@@ -48,15 +47,6 @@
               >
                 <mat-icon>visibility</mat-icon>
               </button>
-              <!-- <button
-                mat-icon-button
-                type="button"
-                matTooltip="View details about this act"
-                color="primary"
-                (click)="viewAct(act)"
-              >
-                <mat-icon>read_more</mat-icon>
-              </button> -->
             </td>
             <td>{{ act.label }}</td>
             <td>{{ act.familyName }}</td>
