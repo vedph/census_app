@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { LookupItem } from '../models';
+import { DataEntityType, LookupItem } from '../models';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-act-filter',
@@ -12,6 +13,11 @@ export class ActFilterComponent implements OnInit {
   public partners$: Observable<LookupItem[]>;
 
   public form: FormGroup;
+  public label: FormControl;
+  public yearMin: FormControl;
+  public yearMax: FormControl;
+  public description: FormControl;
+  public archive: FormControl;
 
   public family: LookupItem;
   public company: LookupItem;
@@ -21,11 +27,25 @@ export class ActFilterComponent implements OnInit {
   public partners: LookupItem[];
   public professions: LookupItem[];
 
-  constructor(formBuilder: FormBuilder) {
-    this.form = formBuilder.group({});
+  public archives$: Observable<LookupItem[]>;
+
+  constructor(formBuilder: FormBuilder, private _apiService: ApiService) {
+    this.label = formBuilder.control(null);
+    this.yearMin = formBuilder.control(0);
+    this.yearMax = formBuilder.control(0);
+    this.description = formBuilder.control(null);
+    this.archive = formBuilder.control(0);
+    this.form = formBuilder.group({
+      label: this.label,
+      yearMin: this.yearMin,
+      yearMax: this.yearMax,
+      description: this.description,
+      archive: this.archive
+    });
   }
 
   ngOnInit(): void {
+    this.archives$ = this._apiService.lookup(DataEntityType.archive, null, 0);
   }
 
   public onFamilyChange(item: LookupItem): void {

@@ -37,8 +37,25 @@
           </div>
 
           <!-- label -->
+          <div>
+            <mat-form-field>
+              <input matInput [formControl]="label" placeholder="label" />
+            </mat-form-field>
+          </div>
 
           <!-- archive -->
+          <h4>book</h4>
+          <div>
+            <mat-form-field>
+              <mat-select [formControl]="archive" placeholder="archive">
+                <mat-option [value]="0">(none)</mat-option>
+                <mat-option *ngFor="let a of archives$ | async" [value]="a.id">
+                  {{ a.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
           <!-- book (autocomplete) -->
           <div>
             <app-lookup-item
@@ -49,7 +66,38 @@
           </div>
 
           <!-- book years -->
+          <div>
+            <mat-form-field style="width: 4em">
+              <input
+                matInput
+                [formControl]="yearMin"
+                type="number"
+                min="0"
+                placeholder="min"
+              />
+            </mat-form-field>
+            &nbsp;-&nbsp;
+            <mat-form-field style="width: 4em">
+              <input
+                matInput
+                [formControl]="yearMax"
+                type="number"
+                min="0"
+                placeholder="max"
+              />
+            </mat-form-field>
+          </div>
+
           <!-- book description -->
+          <div>
+            <mat-form-field>
+              <input
+                matInput
+                [formControl]="description"
+                placeholder="description"
+              />
+            </mat-form-field>
+          </div>
         </mat-tab>
 
         <mat-tab>
