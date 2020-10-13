@@ -61,6 +61,38 @@ export interface LookupItem {
   name: string;
 }
 
+export interface Book {
+  id: number;
+  archive: LookupItem;
+  type: LookupItem;
+  subtype: LookupItem;
+  writePlace?: LookupItem;
+  writer?: LookupItem;
+  location: string;
+  description?: string;
+  incipit?: string;
+  startYear?: number;
+  endYear?: number;
+  edition?: string;
+  note?: string;
+  file?: string;
+}
+
+export interface Act {
+  id: number;
+  book: Book;
+  type: LookupItem;
+  subtype: LookupItem;
+  company?: LookupItem;
+  family?: LookupItem;
+  place?: LookupItem;
+  label: string;
+  note?: string;
+  categories?: LookupItem[];
+  professions?: LookupItem[];
+  partners?: LookupItem[];
+}
+
 export enum DataEntityType
 {
     act = 0,
