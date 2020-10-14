@@ -1,4 +1,6 @@
-# CensusApp
+# Census App
+
+Quick Docker image build: `docker build . -t vedph2020/census-app:1.0.0 -t vedph2020/census-app:latest` (replace with the current version).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
 
