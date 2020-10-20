@@ -2,6 +2,7 @@
   height: 258px;
   background-image: url("/assets/img/banner-1024.jpg");
   background-size: cover;
+  margin-bottom: 8px;
 }
 #banner h1 {
   position: relative;
@@ -11,5 +12,5 @@
   font-size: 100px;
   font-weight: normal;
   letter-spacing: -5px;
-  color: #d0d5b4;
+  color: #c0c5a4;
 }

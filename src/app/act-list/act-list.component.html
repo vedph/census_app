@@ -32,11 +32,10 @@
           <th>label</th>
           <th>family</th>
           <th>company</th>
-          <th>place</th>
+          <th fxHide.lt-md>place</th>
           <th>type</th>
           <th>start</th>
           <th>end</th>
-          <!-- <th fxHide.lt-md>group</th> -->
         </thead>
         <tbody>
           <tr *ngFor="let act of pagination.data">
@@ -54,7 +53,7 @@
             <td>{{ act.label }}</td>
             <td>{{ act.familyName }}</td>
             <td>{{ act.companyName }}</td>
-            <td>{{ act.placeName }}</td>
+            <td fxHide.lt-md>{{ act.placeName }}</td>
             <td>{{ act.typeName }}</td>
             <td>{{ act.bookStartYear || '' }}</td>
             <td>{{ act.bookEndYear || '' }}</td>
