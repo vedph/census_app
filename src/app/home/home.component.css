@@ -14,3 +14,10 @@
   letter-spacing: -5px;
   color: #c0c5a4;
 }
+article {
+  text-align: center;
+  margin: 16px 48px;
+}
+footer a {
+  text-decoration: none;
+}
