@@ -106,6 +106,15 @@
             &nbsp;classes
           </ng-template>
 
+          <!-- act type (autocomplete) -->
+          <div>
+            <app-lookup-item
+              entityType="1"
+              label="type"
+              (itemChange)="onTypeChange($event)"
+            ></app-lookup-item>
+          </div>
+
           <!-- categories -->
           <div>
             <h4>categories</h4>

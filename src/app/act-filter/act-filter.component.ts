@@ -23,6 +23,7 @@ export class ActFilterComponent implements OnInit {
   public company: LookupItem;
   public place: LookupItem;
   public book: LookupItem;
+  public type: LookupItem;
   public categories: LookupItem[];
   public partners: LookupItem[];
   public professions: LookupItem[];
@@ -70,6 +71,10 @@ export class ActFilterComponent implements OnInit {
     this.book = item;
   }
 
+  public onTypeChange(item: LookupItem): void {
+    this.type = item;
+  }
+
   public onCategoriesChange(items: LookupItem[]): void {
     this.categories = items;
   }
@@ -95,6 +100,7 @@ export class ActFilterComponent implements OnInit {
       bookYearMin: this.yearMin.value,
       bookYearMax: this.yearMax.value,
       description: this.description.value,
+      actTypeId: this.type?.id,
       categoryIds: this.categories?.map(c => c.id),
       professionIds: this.professions?.map(c => c.id),
       partnerIds: this.partners?.map(c => c.id)
