@@ -72,9 +72,10 @@ import { ActDetailComponent } from './act-detail/act-detail.component';
         { path: '**', component: HomeComponent },
       ],
       {
-        initialNavigation: 'enabled',
-        useHash: true,
-      }
+    initialNavigation: 'enabled',
+    useHash: true,
+    relativeLinkResolution: 'legacy'
+}
     ),
     // Material
     FlexLayoutModule,
